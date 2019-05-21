@@ -23,20 +23,30 @@ app.get('/books', getBooks);
 // Creates a new search to the Google Books API
 app.post('/searches', createSearch);
 
+//listening on port
+app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+
+// Catch-all for errors
+app.get('*', (request, response) => response.render(`pages/error`));
+
 //ERROR HANDLER
 function handleError(err, res) {
   console.error(err);
   if (res) res.status(500).send('Sorry, something went wrong')
 }
 
-// HELPER FUNCTIONS
+//CONSTRUCTOR/ MODEL //
 function Books(info) {
   const placeholderImage = 'https://i.imgur.com/J5LVHEL.jpg';
-  const placeholder = 'default';
-  this.image = placeholderImage;
-  this.title = placeholder
-
+  const placeholder = 'Sorry, this information is not avaialable.';
+  this.image = info.image || placeholderImage;
+  this.title = info.title || 'NO title is available.';
+  this.author = info.author;
+  this.bookSummary = info.bookSummary //|| placeholder.bookSummary;
+  this.booklink = info.booklink //|| placeholder.booklink;
 }
+
+// HELPER FUNCTIONS
 
 function getBooks(request, response) {
   const url = `https://www.googleapis.com/books/v1/volumes?q=${this.query}&key=${process.env.BOOKS_API_KEY}`;
@@ -67,19 +77,14 @@ function createSearch(request, response) {
 
   if (request.body.search[1] === 'title') { url += `+intitle:${request.body.search[0]}`; }
   if (request.body.search[1] === 'author') { url += `+inauthor:${request.body.search[0]}`; }
-  if (request.body.search[1] === 'genre') { url += `+ingenre:${request.body.search[0]}`; }
+  //====== STRETCH GOAL FOR GENRE ========// 
+  //if (request.body.search[1] === 'genre') { url += `+ingenre:${request.body.search[0]}`; }
 
   superagent.get(url)
+  //.then(apiResponse => response.send(apiResponse.body));
     .then(apiResponse => apiResponse.body.items.map(bookResult => new Books(bookResult.volumeInfo)))
-    .then(books => response.render('pages/searches/show', {searchResults: books}));
+    .then(bookInstances => response.render('pages/show', {searchResults: bookInstances}));
 
-  // how will we handle errors?
 
 }
 
-app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
-
-// Catch-all
-app.get('*', (request, response) => response.render(`pages/error`));
-
-//app.get('*', (request, response) => response.status(404).send('This route does not exist'));
