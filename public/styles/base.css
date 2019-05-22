@@ -1,12 +1,20 @@
 
 body{
-    background-color: cornflowerblue;
+    background: url(https://purewows3.imgix.net/images/articles/2017_06/bestbookstore18.jpg?auto=format,compress&cs=strip);
+
 }
 
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond');
 main {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    box-sizing: border-box;
+    /* background-color: rgb(105, 60, 33); */
+    background: url(https://img.theculturetrip.com/768x432/wp-content/uploads/2014/10/bookstore-1315560_1920.jpg);
+    margin: auto;
+    text-align: center;
+    padding-top: 60px;
+    border: solid 5px rgb(189, 75, 23);
+    color: yellowgreen;
+}
 }
 
 fieldset {
