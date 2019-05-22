@@ -33,11 +33,11 @@ app.get('*', (request, response) => response.render(`pages/error`));
 // MODEL //
 function Book(info) {
   const placeholderImage = 'https://i.imgur.com/J5LVHEL.jpg';
-  this.image = info.image || placeholderImage;
   this.title = info.title || 'Title not available.';
+  this.image = info.imageLinks.smallThumbnail || placeholderImage;
   this.authors = info.authors;
-  this.bookSummary = info.bookSummary //|| placeholder.bookSummary;
-  this.link = info.booklink //|| placeholder.booklink;
+  this.description = info.description|| "Book summary not available";
+  // this.link = info.booklink //|| placeholder.booklink;
 }
 
 // HELPER FUNCTIONS
@@ -58,13 +58,13 @@ function createSearch(request, response) {
 
   if (request.body.search[1] === 'title') { url += `+intitle:${request.body.search[0]}`; }
   if (request.body.search[1] === 'author') { url += `+inauthor:${request.body.search[0]}`; }
-  
+  if (request.body.search[1] === 'genre') { url += `+ingenre:${request.body.search[0]}`; }
 
   superagent.get(url)
   //.then(apiResponse => response.send(apiResponse.body));
     .then(apiResponse => apiResponse.body.items.map(bookResult => new Book(bookResult.volumeInfo)))
-    .then(bookInstances => response.render('pages/searches/show', {searchResults: bookInstances}));
+    .then(bookInstances => response.render('pages/show', {searchResults: bookInstances}));
 }
 
-//====== STRETCH GOAL FOR GENRE ========// 
-  //if (request.body.search[1] === 'genre') { url += `+ingenre:${request.body.search[0]}`; }
+
+

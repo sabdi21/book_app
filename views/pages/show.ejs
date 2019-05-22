@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang = "en">
   <head>
     <meta charset="UTF-8">
@@ -6,10 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content=ie="edge">
     <title>Book Shelf App</title>
 
-  </head>
-  <body>
+</head>
+<body>
+  <ul>
   <% searchResults.forEach(book => { %>
-
+    <li>
+      </a><h2><%= book.title %></h2>
+      <img src="<%- book.image %>" alt="<%=book.title%>"/>
+      <h3>Author(s): <%= book.authors %></h3>
+      <p>Book Summary: <%= book.description %></p>
+     
+    </li>
   <% } ); %>
+    
+  </ul>
 </body>
-</html> -->
+</html>
