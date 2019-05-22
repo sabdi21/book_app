@@ -3,10 +3,14 @@ body{
     background-color: cornflowerblue;
 }
 
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond');
 main {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    box-sizing: border-box;
+    background-color: rgb(134, 134, 136);
+    margin: auto;
+    text-align: center;
+    padding-top: 60px;
+}
 }
 
 fieldset {
