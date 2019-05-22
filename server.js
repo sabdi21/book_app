@@ -63,7 +63,7 @@ function createSearch(request, response) {
   superagent.get(url)
   //.then(apiResponse => response.send(apiResponse.body));
     .then(apiResponse => apiResponse.body.items.map(bookResult => new Book(bookResult.volumeInfo)))
-    .then(bookInstances => response.render('pages/show', {searchResults: bookInstances}));
+    .then(bookInstances => response.render('pages/searches/show', {searchResults: bookInstances}));
 }
 
 
