@@ -21,6 +21,7 @@
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.17.0",
+    "nodemon": "^1.19.0",
     "superagent": "^5.0.5"
   }
 }
