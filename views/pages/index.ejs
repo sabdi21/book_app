@@ -7,13 +7,15 @@
  </head>
  <body>
    <main>
-     <h1>Book App</h1>
-     <h4>Search by Title or Author</h4>
-     <form action="/searches" method="post">
-       <input type="text" name="search" placeholder="Enter a title or author" required>
+
+     <h4 id="searchText">Search by Title, Author, Genre</h4>
+     <form action="/searches" method="post" id="formBorder">
+       <input id="searchBox" type="text" name="search" placeholder="Enter a title or author" required>
+       <div class="navStuff">
+
        <fieldset>
          <label for="title">
-           <span>Title</span>
+           <span id="">Title</span>
            <input type="radio" name="search" value="title" required>
          </label>
        </fieldset>
@@ -23,14 +25,14 @@
            <input type="radio" name="search" value="author" required>
          </label>
        </fieldset>
-       <!--======STRETCH GOAL===== -->
-       <!-- <fieldset>
+       <fieldset>
          <label for="genre">
            <span>Genre</span>
              <input type="radio" name="search" value="genre">
          </label>
-       </fieldset> -->
-       <button type="submit">Search the Google Books API</button>
+       </fieldset>
+      </div>
+       <button type="submit" id="searchButton">Search the Google Books API</button>
      </form>
    </main>
  </body>
