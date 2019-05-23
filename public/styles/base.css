@@ -1,22 +1,30 @@
 
 body{
-    background: url(https://purewows3.imgix.net/images/articles/2017_06/bestbookstore18.jpg?auto=format,compress&cs=strip);
+    background: url(https://static1.squarespace.com/static/5aea36eb3e2d09e40552024b/t/5aea4afb8a922d7249c907bd/1525304090828/Books%21?format=1500w);
 
 }
 
 @import url('https://fonts.googleapis.com/css?family=EB+Garamond');
+
 main {
     box-sizing: border-box;
     /* background-color: rgb(105, 60, 33); */
-    background: url(https://img.theculturetrip.com/768x432/wp-content/uploads/2014/10/bookstore-1315560_1920.jpg);
+    background: url(https://purewows3.imgix.net/images/articles/2017_06/bestbookstore18.jpg?auto=format,compress&cs=strip);
     margin: auto;
     text-align: center;
     padding-top: 60px;
     border: solid 5px rgb(189, 75, 23);
     color: yellowgreen;
 }
+
+h1{
+    background-color: rgb(43, 43, 133);
+}
+h4{
+    font-size: 25px;
 }
 
 fieldset {
     
 }
+
