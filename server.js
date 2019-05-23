@@ -29,6 +29,7 @@ app.set('view engine', 'ejs');
 // API Routes
 app.get('/', newSearch); // Renders the search form
 app.post('/searches', createSearch); // Creates a new search to the Google Books API
+//app.get('books/:id', bookDetails);
 
 //listening on port
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
@@ -49,9 +50,11 @@ function Book(info) {
 
 // HELPER FUNCTIONS
 // Note that .ejs file extension is not required
-function newSearch(request, response) {
-  response.render('pages/index');
-}
+// function newSearch(request, response) {
+//   response.render('add path for new search'); //location for ejs files
+//   app.use(express.static('./public'));//location for other files like css
+// }
+
 
 // No API key required
 // Console.log request.body and request.body.search
@@ -73,5 +76,13 @@ function createSearch(request, response) {
     .then(bookInstances => response.render('pages/searches/show', {searchResults: bookInstances}));
 }
 
+// function bookDetails(request, response) {
+//   const SQL = `SELECT * FROM books WHERE id=$1;`;
+//   let values = [request.params.book_id];
+
+//   return client.query(SQL, values)
+//     .then(results => response.render('pages/books/detail', { book:results.rows[0]}))
+//     .catch(err => handleError(err, response));
+// }
 
 
