@@ -9,3 +9,6 @@ CREATE TABLE IF NOT EXISTS books (
   description VARCHAR(255),
   bookshelf VARCHAR(255)
 );
+
+-- INSERT INTO books (author, title, isbn, isbn, image_url, description, bookshelf)
+-- VALUES('','');

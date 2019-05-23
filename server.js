@@ -3,6 +3,7 @@
 // Application Dependencies
 const express = require('express');
 const superagent = require('superagent');
+//const pg = require('pg');
 
 // Application Setup
 const app = express();
@@ -10,18 +11,24 @@ const PORT = process.env.PORT || 8000;
 
 // Application Middleware
 app.use(express.urlencoded({extended:true}));
+
+// Set the file locations for ejs templates and static files like CSS
 app.use(express.static('public'));
+
+// Load environment variables from .env file
+//require('dotenv').config();
+
+// Database setup
+//const client = new pg.Client(process.env.DATABASE_URL);
+//client.connect();
+//client.on('error', err => console.error(err));
 
 // Set the view engine for server-side templating
 app.set('view engine', 'ejs');
 
 // API Routes
-// Renders the search form
-app.get('/', newSearch);
-
-
-// Creates a new search to the Google Books API
-app.post('/searches', createSearch);
+app.get('/', newSearch); // Renders the search form
+app.post('/searches', createSearch); // Creates a new search to the Google Books API
 
 //listening on port
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
@@ -34,7 +41,7 @@ app.get('*', (request, response) => response.render(`pages/error`));
 function Book(info) {
   const placeholderImage = 'https://i.imgur.com/J5LVHEL.jpg';
   this.title = info.title || 'Title not available.';
-  this.image = info.imageLinks.smallThumbnail || placeholderImage;
+  this.image = info.imageLinks.thumbnail || placeholderImage;
   this.authors = info.authors;
   this.description = info.description|| "Book summary not available";
   // this.link = info.booklink //|| placeholder.booklink;
