@@ -1,5 +1,9 @@
 body{
-    background-image: linear-gradient(rgba(145, 96, 7, 0.5), rgba(207, 146, 33, 0.726)), url(https://static1.squarespace.com/static/5aea36eb3e2d09e40552024b/t/5aea4afb8a922d7249c907bd/1525304090828/Books%21?format=1500w);
+    background-image: linear-gradient(rgba(141, 140, 137, 0.883), rgba(207, 146, 33, 0.726)), url(https://static1.squarespace.com/static/5aea36eb3e2d09e40552024b/t/5aea4afb8a922d7249c907bd/1525304090828/Books%21?format=1500w);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center
+}
+
+#returnHome {
+    font-size: 45px;
 }

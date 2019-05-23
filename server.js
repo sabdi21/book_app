@@ -3,7 +3,7 @@
 // Application Dependencies
 const express = require('express');
 const superagent = require('superagent');
-//const pg = require('pg');
+const pg = require('pg');
 
 // Application Setup
 const app = express();
@@ -16,20 +16,19 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 
 // Load environment variables from .env file
-//require('dotenv').config();
+require('dotenv').config();
 
 // Database setup
-//const client = new pg.Client(process.env.DATABASE_URL);
-//client.connect();
-//client.on('error', err => console.error(err));
+const client = new pg.Client(process.env.DATABASE_URL);
+client.connect();
+client.on('error', err => console.error(err));
 
 // Set the view engine for server-side templating
 app.set('view engine', 'ejs');
 
 // API Routes
 app.get('/', newSearch); // Renders the search form
-app.post('/searches', createSearch); // Creates a new search to the Google Books API
-//app.get('books/:id', bookDetails);
+app.post('/searches', createSearch); // New search 
 
 //listening on port
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
@@ -44,16 +43,17 @@ function Book(info) {
   this.title = info.title || 'Title not available.';
   this.image = info.imageLinks.thumbnail || placeholderImage;
   this.authors = info.authors;
-  this.description = info.description|| "Book summary not available";
-  // this.link = info.booklink //|| placeholder.booklink;
+  this.description = info.description || "Book summary not available";
+  this.isbn = info.industryIdentifiers || 'ISBN Not Available';
+  this.id = info.industryIdentifiers;
 }
 
 // HELPER FUNCTIONS
 // Note that .ejs file extension is not required
-// function newSearch(request, response) {
-//   response.render('add path for new search'); //location for ejs files
-//   app.use(express.static('./public'));//location for other files like css
-// }
+function newSearch(request, response) {
+  response.render('pages/index'); //location for ejs files
+  app.use(express.static('./public'));//location for other files like css
+}
 
 
 // No API key required
@@ -76,13 +76,5 @@ function createSearch(request, response) {
     .then(bookInstances => response.render('pages/searches/show', {searchResults: bookInstances}));
 }
 
-// function bookDetails(request, response) {
-//   const SQL = `SELECT * FROM books WHERE id=$1;`;
-//   let values = [request.params.book_id];
-
-//   return client.query(SQL, values)
-//     .then(results => response.render('pages/books/detail', { book:results.rows[0]}))
-//     .catch(err => handleError(err, response));
-// }
 
 

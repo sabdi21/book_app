@@ -9,18 +9,27 @@
 
 </head>
 <body>
+  <header>
+    <div>
+      <h1>My Book Shelf</h1>
+    </div>
+  </header>
+  <main id="bookContainer">
   <ul>
   <% searchResults.forEach(book => { %>
     <li>
       </a><h2><%= book.title %></h2>
       <img src="<%- book.image %>" alt="<%=book.title%>"/>
       <h3>Author(s): <%= book.authors %></h3>
-      <p>Book Summary: <%= book.description %></p>
+      <p>Book Summary : <%= book.description %></p>
+      <p>Book ISBN : <%= book.isbn %></p>
      <br>
      <br>
     </li>
   <% } ); %>
-    
   </ul>
+</main>
+  <p><a id="returnHome" href="/">Return to Home Page</a></p>
+
 </body>
 </html>
