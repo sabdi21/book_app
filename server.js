@@ -27,7 +27,9 @@ client.on('error', err => console.error(err));
 app.set('view engine', 'ejs');
 
 // API Routes
-app.get('/', newSearch); // Renders the search form
+app.get('/new', newSearch); // Renders the search form
+app.get('books/:id', bookDetails);
+app.get('/', bookList);
 app.post('/searches', createSearch); // New search 
 
 //listening on port
@@ -44,17 +46,35 @@ function Book(info) {
   this.image = info.imageLinks.thumbnail || placeholderImage;
   this.authors = info.authors;
   this.description = info.description || "Book summary not available";
-  this.isbn = info.industryIdentifiers || 'ISBN Not Available';
+  this.isbn = info.isbn || 'ISBN Not Available';
   this.id = info.industryIdentifiers;
 }
 
 // HELPER FUNCTIONS
 // Note that .ejs file extension is not required
+
+function bookList(request, response){
+  const SQL = `SELECT * FROM books;`;
+  // const values = [request.query.items];
+
+  return client.query(SQL)
+    .then(results => response.render('pages/index', { bookList:results.rows }))
+    .catch(err=> console.error(err));
+}
+
 function newSearch(request, response) {
-  response.render('pages/index'); //location for ejs files
+  response.render('pages/searches/new'); //location for ejs files
   app.use(express.static('./public'));//location for other files like css
 }
 
+function bookDetails(request, response) {
+  const SQL = `SELECT * FROM books WHERE id=$1;`;
+  let values = [request.params.book_id];
+
+  return client.query(SQL, values)
+    .then(results => response.render('pages/books/detail', { book:results.rows[0]}))
+    .catch(err=> console.error(err));
+}
 
 // No API key required
 // Console.log request.body and request.body.search

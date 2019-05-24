@@ -12,3 +12,12 @@ CREATE TABLE IF NOT EXISTS books (
 
 -- INSERT INTO books (author, title, isbn, isbn, image_url, description, bookshelf)
 -- VALUES('','');
+
+INSERT INTO books (author, title, isbn, image_url, description, bookshelf) VALUES (
+  'Shukri,
+  'Cute Babies',
+  '123456789',
+  'https://via.placeholder.com/250',
+  'A picture ',
+  'adorable'
+);
