@@ -46,7 +46,7 @@ function Book(info) {
   this.image = info.imageLinks.thumbnail || placeholderImage;
   this.authors = info.authors;
   this.description = info.description || "Book summary not available";
-  this.isbn = info.industryIdentifiers || 'ISBN Not Available';
+  this.isbn = info.isbn || 'ISBN Not Available';
   this.id = info.industryIdentifiers;
 }
 
