@@ -1,39 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
-   <title>Book Collection</title>
-   <link rel="stylesheet" href="styles/base.css">
-   
- </head>
- <body>
-   <main>
+<html>
+<head>
+    <title>Book App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/reset.css">
+    <link rel="stylesheet" href="/style/base.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <link rel="stylesheet" href="/style/module.css">
+</head>
+<body>
+    <a href="/new"><h3> New Search</h3></a>
+    <main>
+        <h2><%= bookList.length %> Saved Books</h4>
 
-     <h4 id="searchText">Search by Title, Author, Genre</h4>
-     <form action="/searches" method="post" id="formBorder">
-       <input id="searchBox" type="text" name="search" placeholder="Enter a title or author" required>
-       <div class="navStuff">
+          <ul class="book-list">
+            <% bookList.forEach(item => { %>
+                <section>
+                  <img src="<%= item.img_url %>">
+                  <h3><%= item.title %></h3>
+                  <span><%= item.authors %></span>
+                  <p><%= item.description %></p>
+                  <span><%= item.isbn %></span>
+                </section>
+            <% }) %>
+          </ul>
 
-       <fieldset>
-         <label for="title">
-           <span id="">Title</span>
-           <input type="radio" name="search" value="title" required>
-         </label>
-       </fieldset>
-       <fieldset>
-         <label for="author">
-           <span>Author</span>
-           <input type="radio" name="search" value="author" required>
-         </label>
-       </fieldset>
-       <fieldset>
-         <label for="genre">
-           <span>Genre</span>
-             <input type="radio" name="search" value="genre">
-         </label>
-       </fieldset>
-      </div>
-       <button type="submit" id="searchButton">Search the Google Books API</button>
-     </form>
-   </main>
- </body>
+    </main>
+</body>
 </html>

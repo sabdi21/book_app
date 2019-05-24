@@ -2,6 +2,7 @@
 <html lang = "en">
   <head>
       <link rel="stylesheet" href="styles/layout.css">
+      <link rel="stylesheet" href="styles/modules.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content=ie="edge">
@@ -17,7 +18,7 @@
   <main id="bookContainer">
   <ul>
   <% searchResults.forEach(book => { %>
-    <li>
+    <li id="showPageStyle">
       </a><h2><%= book.title %></h2>
       <img src="<%- book.image %>" alt="<%=book.title%>"/>
       <h3>Author(s): <%= book.authors %></h3>
